@@ -11,6 +11,13 @@ class App extends Component {
   };
 
   handleAddContact = (newContact) => {
+    const { contacts } = this.state;
+
+    if (contacts.find((contact) => contact.name === newContact.name)) {
+      alert(`${newContact.name} is already in contacts.`);
+      return;
+    }
+  
     this.setState((prevState) => ({
       contacts: [...prevState.contacts, { ...newContact, id: Date.now() }],
     }));
